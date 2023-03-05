@@ -1,0 +1,7 @@
+{
+    "board": "arduino:avr:leonardo",
+    "programmer": "Arduino as ISP",
+    "port": "COM23",
+    "sketch": "kbdAndMouseCtrl.ino",
+    "output": "./build"
+}
