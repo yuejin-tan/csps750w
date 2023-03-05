@@ -21,8 +21,7 @@ float Temp1;
 float Temp2;
 float FanSpeed;
 float isON;
-int32_t FanSpeedTarget = -1;
-int32_t FanSpeedTargetOld = -1;
+int16_t FanSpeedTarget = -1;
 int16_t ifON = 0;
 
 void setup()
@@ -67,10 +66,9 @@ void DataRefresh()
         digitalWrite(A0, HIGH);
     }
 
-    if (FanSpeedTarget > 0 && FanSpeedTargetOld != FanSpeedTarget)
+    if (FanSpeedTarget >= 0)
     {
         PowerSupply_1.setFanRPM(FanSpeedTarget);
-        FanSpeedTargetOld = FanSpeedTarget;
     }
 }
 
@@ -179,6 +177,7 @@ void loop()
 SCD_REG_BEGIN(_1)
 SCD_REG_ADD(nowTime, uint32_t)
 SCD_REG_ADD(ifON, int16_t)
+SCD_REG_ADD(FanSpeedTarget, int16_t)
 SCD_REG_ADD(VoltIn, float)
 SCD_REG_ADD(VoltOut, float)
 SCD_REG_ADD(CurrentIn, float)
@@ -188,6 +187,5 @@ SCD_REG_ADD(PowerOut, float)
 SCD_REG_ADD(Temp1, float)
 SCD_REG_ADD(Temp2, float)
 SCD_REG_ADD(FanSpeed, float)
-SCD_REG_ADD(FanSpeedTarget, int32_t)
 SCD_REG_ADD(isON, float)
 SCD_REG_END(_1)
