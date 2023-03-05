@@ -29,9 +29,9 @@ void setup()
 {
     // 使能板载LED
     pinMode(13, OUTPUT);
-    pinMode(A1, OUTPUT);
-    digitalWrite(A1, true);
-    pinMode(A0, INPUT);
+    pinMode(A0, OUTPUT);
+    digitalWrite(A0, true);
+    pinMode(A1, INPUT);
 
 
     // 串口波特率115200
@@ -57,14 +57,14 @@ void DataRefresh()
     Temp2 = PowerSupply_1.getTemp2();
     FanSpeed = PowerSupply_1.getFanRPM();
 
-    isON = analogRead(A0) * (5.0f / 1023.0f);
+    isON = analogRead(A1) * (5.0f / 1023.0f);
     if (ifON)
     {
-        digitalWrite(A1, LOW);
+        digitalWrite(A0, LOW);
     }
     else
     {
-        digitalWrite(A1, HIGH);
+        digitalWrite(A0, HIGH);
     }
 
     if (FanSpeedTarget > 0 && FanSpeedTargetOld != FanSpeedTarget)
